@@ -1,2 +1,17 @@
+#include <iostream>
+using namespace std;
 
-Hello 
+int main(){
+	int z=0, n=0;
+	for (int x=35000000;x<45000001;x++){
+		int i=1;
+		while (i*i<=x){
+			if (x%i==0){
+				n++;
+				i++;
+			}
+		}
+		z++;
+		cout<<z<<" x="<<x<<"\t"<<n<<endl;
+	}
+}
