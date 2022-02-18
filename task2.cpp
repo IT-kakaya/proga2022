@@ -2,13 +2,12 @@
 using namespace std;
 
 float Square(float a, float b){
-    cout<<a*b<<endl;
-    return 0;
+    return a*b;
 }
 
 int main(){
     float a, b;
     cin>>a;
     cin>>b;
-    Square(a, b);
+    cout<<Square(a, b)<<endl;
 }
