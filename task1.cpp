@@ -2,12 +2,11 @@
 using namespace std;
 
 float Conversion(float x){
-    cout<<x*2.54<<endl;
-    return 0;
+    return x*2.54;
 }
 
 int main(){
     float x;
     cin>>x;
-    Conversion(x);
+    cout<<Conversion(x)<<endl;
 }
