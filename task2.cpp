@@ -1,28 +1,27 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-    char c;
-    int a=0;
-    bool sign=true;
-    do{
-        cin>>c;
-        do{
-            if (c=='-'){
-                sign=false;
-                
-            }
-            else{
-                sign=true;
-            }
-        }while(c=='\n');
-        a=c-'0'+a*10;
-    }while (a==0);
-    if (sign==true){
-        cout<<"All numbers are positive";
+int PositiveNumbers(int a){
+    int negative = 0;
+    if (a < 0){
+        negative = negative + 1;
     }
-    else{
-        cout<<"Not all numbers are positive";
-    }
+    return negative;
 }
 
+int main(){
+    int amount = 0;
+    int a;
+    cout << "Enter numbers. If you want to stop, enter 0:" << endl;
+    while (a != 0){
+        cin>>a;
+        PositiveNumbers(a);
+        amount=amount+PositiveNumbers(a);
+    }
+    if (amount != 0){
+        cout << "Not all numbers are positive" << endl;
+    }
+    else{
+        cout << "All numbers are positive" << endl;
+    }
+}
