@@ -8,6 +8,7 @@ char Step1(char a, int i){
     if (char(a) < 'g'){
         cout << char(a+1) << i << endl;
     } 
+    return 0;
 }
 
 char Step2(char a, int i){
@@ -17,6 +18,7 @@ char Step2(char a, int i){
     if (char(a) < 'f'){
         cout << char(a+2) << i << endl;
     }
+    return 0;
 }
 
 int main(){
