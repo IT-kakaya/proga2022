@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int PositiveNumbers(int a){
+int PositiveOrNegative(int a){
     int negative = 0;
     if (a < 0){
-        negative = negative + 1;
+        negative = 1;
     }
     return negative;
 }
@@ -15,8 +15,7 @@ int main(){
     cout << "Enter numbers. If you want to stop, enter 0:" << endl;
     while (a != 0){
         cin>>a;
-        PositiveNumbers(a);
-        amount=amount+PositiveNumbers(a);
+        amount=amount+PositiveOrNegative(a);
     }
     if (amount != 0){
         cout << "Not all numbers are positive" << endl;
