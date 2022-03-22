@@ -15,9 +15,9 @@ string TheAWord(string str1){
         }
         str2.push_back(' ');
     }
-    for (int i = 1; i < str1.size() - 1; i++){
+    for (int i = 0; i < str1.size(); i++){
         if ((str1[i] == 'A' || str1[i] == 'a') && str1[i-1] == ' '){
-            for (int j = i; j < str1.size() - 1; j++){
+            for (int j = i; j < str1.size(); j++){
                 if (str1[j] != ' '){
                     str2.push_back(str1[j]);
                 }
@@ -27,6 +27,7 @@ string TheAWord(string str1){
             }
             str2.push_back(' ');
         }
+        str2.push_back(str1[i]);
     }
     return str2;
 }
