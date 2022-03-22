@@ -12,23 +12,19 @@ int main()
     for (int i = 0; i < n; i++){
         cin >> array[i];
     }
-    
-    int min = array[0]; //Предроложим, что наименьшее число - первое 
-    int Nmin = 0;
-    int max = array[0]; //Предположим, что наибольшее число - первое 
-    int Nmax = 0;
+    int Nmin = 0; //Предроложим, что наименьшее число - первое 
+    int Nmax = 0; //Предположим, что наибольшее число - первое
     for (int i = 0; i < n; i++){ 
-        if (array[i] < min){
-            min = array[i];
+        if (array[i] < array[Nmin]){
             Nmin = i;
         }
-        else{
-            max = array[i];
+        if (array[i] > array[Nmax]){
             Nmax = i;
         }
     }
-    array[Nmin] = max;
-    array[Nmax] = min;
+    int NewMin = array[Nmin];
+    array[Nmin] = array[Nmax];
+    array[Nmax] = NewMin;
     
     cout << "Преобразованный массив:" << endl;
     for (int i = 0; i < n; i++){
