@@ -3,20 +3,20 @@ using namespace std;
 
 char Step1(char a, int i){
     if (char(a) > 'a'){
-        cout << char(a-1) << i << endl; 
+        cout << char(a - 1) << i << endl; 
     }
     if (char(a) < 'g'){
-        cout << char(a+1) << i << endl;
+        cout << char(a + 1) << i << endl;
     } 
     return 0;
 }
 
 char Step2(char a, int i){
     if (char(a) > 'b'){
-        cout << char(a-2) << i << endl;
+        cout << char(a - 2) << i << endl;
     }
     if (char(a) < 'f'){
-        cout << char(a+2) << i << endl;
+        cout << char(a + 2) << i << endl;
     }
     return 0;
 }
