@@ -1,7 +1,52 @@
 #include <iostream>
 using namespace std;
 
-string*
+string* Rewrite(int n, int m, int count, string** cafe){
+    cout << endl << "Введите новое число заказов, не превышающее " << n << ": ";
+    int order;
+    cin >> order;
+    cin.ignore();
+    cout << endl;
+    if (order > n)
+        cout << "Введено количество заказов, не соответствующее требованию. Повторите попытку позже. " << endl;
+    else
+    {
+        for (int i = 0; i < order; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (j == 0)
+                {
+                    count = i + 1;
+                    cafe[i][j] = to_string(count);
+            }
+                if (j == 1)
+                {
+                    cout << "Введите номер стола для " << count << " заказа: ";
+                    getline(cin, cafe[i][j]);
+                }
+                if (j == 2)
+                {
+                    cout << "Введите блюдо: ";
+                    getline(cin, cafe[i][j]);
+                }
+                if (j == 3)
+                {
+                    cout << "Введите время приготовления (в минутах): ";
+                    getline(cin, cafe[i][j]); 
+                }
+                if (j == 4)
+                {
+                    cout << "Введите время обслуживания клиента официантом: ";
+                    getline(cin, cafe[i][j]);
+                }
+            }
+            n = order;
+            cout << endl;
+        }
+    }
+    return 0;
+}
 
 string* Look(int n, int m, int z, int replace, string** cafe, string** add){
     cout << endl << "Текущая таблица заказов: " << endl;
@@ -143,7 +188,7 @@ int main()
     cin >> n;
     int m = 5; 
     cout << endl;
-    //int count;
+    int count;
     int choice;
     int replace = 0;
     string** cafe = new string*[n];
@@ -195,50 +240,7 @@ int main()
     {
         if (choice == 1)
         {
-            int count;
-            cout << endl << "Введите новое число заказов, не превышающее " << n << ": ";
-            int order;
-            cin >> order;
-            cin.ignore();
-            cout << endl;
-            if (order > n)
-                cout << "Введено количество заказов, не соответствующее требованию. Повторите попытку позже. " << endl;
-            else
-            {
-                for (int i = 0; i < order; i++)
-                {
-                    for (int j = 0; j < m; j++)
-                    {
-                        if (j == 0)
-                        {
-                            count = i + 1;
-                            cafe[i][j] = to_string(count);
-                        }
-                        if (j == 1)
-                        {
-                            cout << "Введите номер стола для " << count << " заказа: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                        if (j == 2)
-                        {
-                            cout << "Введите блюдо: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                        if (j == 3)
-                        {
-                            cout << "Введите время приготовления (в минутах): ";
-                            getline(cin, cafe[i][j]); 
-                        }
-                        if (j == 4)
-                        {
-                            cout << "Введите время обслуживания клиента официантом: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                    }
-                    n = order;
-                    cout << endl;
-                }
-            }
+            Rewrite(n, m, count, cafe);
         }
         if (choice == 2)
         {
