@@ -1,6 +1,28 @@
 #include <iostream>
 using namespace std;
 
+string* Nomer(int n, int m, string** cafe){
+    cout << endl << "Под каким номером заказа посмотреть? ";
+    int nom;
+    cin >> nom;
+    if (nom > n)
+    cout << endl << "Введённый номер заказа не существует. Повторите попытку позже. ";
+    else
+    {
+        int str;
+        cout << endl << "Детали заказа под номером " << nom << ": " ;
+        for (int i = 0; i < n; i++)
+        {
+            if (stoi(cafe[i][0]) == nom)
+            {
+                str = i;
+            }
+        }
+        cout << "стол " << cafe[str][1] << ", " << cafe[str][2] << ", время приготовления - " << cafe[str][3] << ", время обслуживания - " << cafe[str][4] << endl;
+    }
+    return 0;
+}
+
 string* Sortirovka1(int n, int m, string** cafe){
     cout << endl << "Таблица заказов в порядке убывания длительности приготовления блюда: " << endl << endl << "№ | Номер стола |   Блюдо   | Время приготовления " << endl;
     for (int I=0; I<n; I++){
@@ -281,24 +303,7 @@ int main()
         } 
         if (choice == 6)
         {
-            cout << endl << "Под каким номером заказа посмотреть? ";
-            int nom;
-            cin >> nom;
-            if (nom > n)
-                cout << endl << "Введённый номер заказа не существует. Повторите попытку позже. ";
-            else
-            {
-                int str;
-                cout << endl << "Детали заказа под номером " << nom << ": " ;
-                for (int i = 0; i < n; i++)
-                {
-                    if (stoi(cafe[i][0]) == nom)
-                    {
-                        str = i;
-                    }
-                }
-                cout << "стол " << cafe[str][1] << ", " << cafe[str][2] << ", время приготовления - " << cafe[str][3] << ", время обслуживания - " << cafe[str][4] << endl;
-            }
+            Nomer(n, m, cafe);
         }
         if (choice == 7)
         {
