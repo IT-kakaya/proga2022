@@ -1,19 +1,21 @@
 #include <iostream>
 using namespace std;
 
-struct drob Nod(struct drob);
-
 struct drob{
     int chisl;
     int znam;
 };
 
+void Nod(drob & t);
+
 int main() {
-    struct drob D = {D.chisl, D.znam};
+    drob D;
     cout << "Введите числитель" << endl; 
     cin >> D.chisl;
     cout << "Введите знаменатель" << endl;
     cin >> D.znam;
+    drob & t = D;
+    Nod(D);
     cout << "Сокращенная дробь:" << endl;
     if (D.chisl == 0 && D.znam != 0)
         cout << 0;
@@ -22,10 +24,10 @@ int main() {
     if (D.chisl == D.znam && D.znam != 0)
         cout << 1;
     if (D.chisl != D.znam && D.znam != 0 && D.chisl != 0)
-        Nod(D);
+        cout << D.chisl << "/" << D.znam;
 }
 
-struct drob Nod(struct drob t){
+void Nod(drob& t){
     struct drob result = {t.chisl, t.znam};
     int r;
     int T;
@@ -35,8 +37,6 @@ struct drob Nod(struct drob t){
         result.znam = r;
         T = result.chisl;  
     }
-    if (t.znam/T == 1)
-        cout << t.chisl/T;
-    else
-        cout << t.chisl/T << "/" << t.znam/T;
+    t.chisl = t.chisl/T;
+    t.znam = t.znam/T;
 }
