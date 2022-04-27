@@ -12,9 +12,7 @@ int* Bubble(int n, int* a){
             }
         }
     }
-    for (int i = 0; i < n; i++){
-        cout << a[i];
-    }
+    return 0;
 }
 
 int main() {
@@ -26,6 +24,9 @@ int main() {
     for (int i = 0; i < n; i++){
         cin >> a[i];
     }
-    cout << "Отсортированный массив:" << endl;
     Bubble(n, a);
+    cout << "Новый массив:" << endl;
+    for (int i = 0; i < n; i++){
+        cout << a[i] << " ";
+    }
 }
