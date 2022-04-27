@@ -247,7 +247,48 @@ string* Sortirovka2(int n, int m, string** cafe){
         cout << cafe[i][0] << "        " << cafe[i][1] << "          " << cafe[i][2] << "             " << cafe[i][3] << "          " << cafe[i][4] << endl;
     }
     return 0;
-}           
+}    
+
+string* Adding(int n, int m, int replace, int z, string** cafe, string** add){
+    cout << "Введите детали  нового заказа: " << endl;
+    cin.ignore();
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            add[i][j] = cafe[i][j];
+        }
+    }
+    for (int j = 0; j < m; j++)
+    {
+        if (j == 0)
+            add[z - 1][j] = to_string(z);
+        if (j == 1)
+        {
+            cout << "Введите новый номер стола: ";
+            getline(cin, add[z - 1][j]);
+        }
+        if (j == 2)
+        {
+            cout << "Введите блюдо: ";
+            getline(cin, add[z - 1][j]);
+        }
+        if (j == 3)
+        {
+            cout << "Введите время приготовления (в минутах): ";
+            getline(cin, add[z - 1][j]); 
+        }
+        if (j == 4)
+        {
+            cout << "Введите время обслуживания клиента официантом: ";
+            getline(cin, add[z - 1][j]);
+        }
+    }
+    cout << endl;
+    n += 1;
+    replace = 1;
+    return 0;
+}
     
 
 int main()
@@ -347,43 +388,7 @@ int main()
         }
         if (choice == 8)
         {
-            cout << "Введите детали  нового заказа: " << endl;
-            cin.ignore();
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    add[i][j] = cafe[i][j];
-                }
-            }
-            for (int j = 0; j < m; j++)
-            {
-                if (j == 0)
-                    add[z - 1][j] = to_string(z);
-                if (j == 1)
-                {
-                    cout << "Введите новый номер стола: ";
-                    getline(cin, add[z - 1][j]);
-                }
-                if (j == 2)
-                {
-                    cout << "Введите блюдо: ";
-                    getline(cin, add[z - 1][j]);
-                }
-                if (j == 3)
-                {
-                    cout << "Введите время приготовления (в минутах): ";
-                    getline(cin, add[z - 1][j]); 
-                }
-                if (j == 4)
-                {
-                    cout << "Введите время обслуживания клиента официантом: ";
-                    getline(cin, add[z - 1][j]);
-                }
-            }
-            cout << endl;
-            n += 1;
-            replace = 1;
+            Adding(n, m, replace, z, cafe, add);
         }
         if (choice == 9)
         {
