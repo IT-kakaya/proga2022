@@ -289,6 +289,39 @@ string* Adding(int n, int m, int replace, int z, string** cafe, string** add){
     replace = 1;
     return 0;
 }
+
+string* Delete(int n, int m, string** cafe){
+    cout << endl << "Под каким номером удалить заказ? " << endl;
+    int choice9;
+    cin >> choice9;
+    choice9 -= 1;
+    if (choice9 + 1 > n || choice9 <= 0) 
+        cout << "Данный номер заказа не существует. Повторите попытку позже." << endl;
+    if (choice9 + 1 == n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                cafe[choice9][j].clear();
+            }
+        }
+    }
+    else
+    {
+        for (choice9; choice9 < n - 1; choice9++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                if (j != 0)
+                    cafe[choice9][j] = cafe[choice9 + 1][j];
+            }
+        }
+    }
+    cout << "Успешно удалено. " ;
+    n = n - 1;
+    return 0;
+}
     
 
 int main()
@@ -392,35 +425,7 @@ int main()
         }
         if (choice == 9)
         {
-            cout << endl << "Под каким номером удалить заказ? " << endl;
-            int choice9;
-            cin >> choice9;
-            choice9 -= 1;
-            if (choice9 + 1 > n || choice9 <= 0) 
-                cout << "Данный номер заказа не существует. Повторите попытку позже." << endl;
-            if (choice9 + 1 == n)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    for (int j = 0; j < m; j++)
-                    {
-                        cafe[choice9][j].clear();
-                    }
-                }
-            }
-            else
-            {
-                for (choice9; choice9 < n - 1; choice9++)
-                {
-                    for (int j = 0; j < m; j++)
-                    {
-                        if (j != 0)
-                            cafe[choice9][j] = cafe[choice9 + 1][j];
-                    }
-                }
-            }
-            cout << "Успешно удалено. " ;
-            n = n - 1;
+            Delete(n, m, cafe);
         }
         if (choice == 10)
         {
