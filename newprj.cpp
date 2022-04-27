@@ -61,6 +61,75 @@ string* Look(int n, int m, int z, int replace, string** cafe, string** add){
     return 0;
 }
 
+string* Change(int n, int m, string** cafe){
+    int choice3;
+    cout << endl << "В заказе под каким номером требуются изменения? ";
+    cin >> choice3;
+    cin.ignore();
+    if (choice3 > n || choice3 <= 0)
+        cout << endl << "Номер заказа не существует. Повторите попытку позже. " << endl;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (cafe[i][0] == to_string(choice3))
+            {
+                if (j == 1)
+                {
+                    cout << "Введите новый номер стола: ";
+                    getline(cin, cafe[i][j]);
+                }
+                if (j == 2)
+                {
+                    cout << "Введите блюдо: ";
+                    getline(cin, cafe[i][j]);
+                    }
+                if (j == 3)
+                {
+                    cout << "Введите время приготовления (в минутах): ";
+                    getline(cin, cafe[i][j]); 
+                }
+                if (j == 4)
+                {
+                    cout << "Введите время обслуживания клиента официантом: ";
+                    getline(cin, cafe[i][j]);
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+string* Filtr(int n, int m, string** cafe){
+    int prove = 0;
+    cout << endl << "Введите номер стола для фильтрации: ";
+    int choice4;
+    cin >> choice4;
+    cout << endl;
+    int z;
+    int k = 1;
+    for (int i = 0; i < n; i++)
+    {
+        if (stoi(cafe[i][1]) == choice4)
+        {
+            z = i;
+            if (k == 1)
+            {
+                cout << "Детали заказа для " << choice4 << " стола: " << endl << "Номер заказа " << cafe[z][0] << ", " << cafe[z][2] << ", время приготовления (в минутах) - " << cafe[z][3] << ", время обслуживания - " << cafe[z][4] << endl;
+                    }
+            else
+            {
+                cout << "Номер заказа " << cafe[z][0] << ", " << cafe[z][2] << ", время приготовления (в минутах) - " << cafe[z][3] << ", время обслуживания - " << cafe[z][4] << endl;
+                    }
+            k++;
+            prove = 1;
+        }
+    }
+    if (prove == 0)
+        cout << "Введённый номер стола не действителен для данной таблицы. Повторите попытку позже." << endl;
+    return 0;
+}
+
 string* Max(int n, int m, string** cafe){
     cout << endl << "Столик с максимальным ожиданием: " << endl;
     int k = 0;
@@ -248,72 +317,11 @@ int main()
         }
         if (choice == 3)
         {
-            int choice3;
-            cout << endl << "В заказе под каким номером требуются изменения? ";
-            cin >> choice3;
-            cin.ignore();
-            if (choice3 > n || choice3 <= 0)
-                cout << endl << "Номер заказа не существует. Повторите попытку позже. " << endl;
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    if (cafe[i][0] == to_string(choice3))
-                    {
-                        if (j == 1)
-                        {
-                            cout << "Введите новый номер стола: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                        if (j == 2)
-                        {
-                            cout << "Введите блюдо: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                        if (j == 3)
-                        {
-                            cout << "Введите время приготовления (в минутах): ";
-                            getline(cin, cafe[i][j]); 
-                        }
-                        if (j == 4)
-                        {
-                            cout << "Введите время обслуживания клиента официантом: ";
-                            getline(cin, cafe[i][j]);
-                        }
-                    }
-                }
-            }
+            Change(n, m, cafe);
         }
         if (choice == 4)
         {
-            int prove = 0;
-            cout << endl << "Введите номер стола для фильтрации: ";
-            int choice4;
-            cin >> choice4;
-            cout << endl;
-            int z;
-            int k = 1;
-            for (int i = 0; i < n; i++)
-            {
-                if (stoi(cafe[i][1]) == choice4)
-                {
-                    z = i;
-                    if (k == 1)
-                    {
-                        //z = i;
-                        cout << "Детали заказа для " << choice4 << " стола: " << endl << "Номер заказа " << cafe[z][0] << ", " << cafe[z][2] << ", время приготовления (в минутах) - " << cafe[z][3] << ", время обслуживания - " << cafe[z][4] << endl;
-                    }
-                    else
-                    {
-                        //z = i;
-                        cout << "Номер заказа " << cafe[z][0] << ", " << cafe[z][2] << ", время приготовления (в минутах) - " << cafe[z][3] << ", время обслуживания - " << cafe[z][4] << endl;
-                    }
-                    k++;
-                    prove = 1;
-                }
-            }
-            if (prove == 0)
-                cout << "Введённый номер стола не действителен для данной таблицы. Повторите попытку позже." << endl;
+            Filtr(n, m, cafe);
         }
         if (choice == 5)
         { 
