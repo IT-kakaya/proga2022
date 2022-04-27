@@ -1,6 +1,48 @@
 #include <iostream>
 using namespace std;
 
+string* Max(int n, int m, string** cafe){
+    cout << endl << "Столик с максимальным ожиданием: " << endl;
+    int k = 0;
+    int sum = 0;
+    int max = 0;
+    int l = 2;
+    int b[n][l];
+    while (k < n)
+    {
+        sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (stoi(cafe[k][1]) == stoi(cafe[i][1]))
+                sum += stoi(cafe[i][3]);
+        }
+        if (max < sum)
+            max = sum;
+        b[k][0] = stoi(cafe[k][1]);
+        b[k][1] = sum;
+        k++;
+    } //нашли максимум
+    k = 0;
+    while (k < n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (b[k][0] == b[i][0] && i != k)
+            {
+                b[i][1] = 0;
+                b[i][0] = 0;
+            }
+        }
+        k++;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (b[i][1] == max)
+            cout << "стол " << b[i][0] << " (время ожидания = " << max << ")" << endl;
+    }
+    return 0;
+}
+
 string* Nomer(int n, int m, string** cafe){
     cout << endl << "Под каким номером заказа посмотреть? ";
     int nom;
@@ -261,45 +303,8 @@ int main()
                 cout << "Введённый номер стола не действителен для данной таблицы. Повторите попытку позже." << endl;
         }
         if (choice == 5)
-        {  
-            cout << endl << "Столик с максимальным ожиданием: " << endl;
-            int k = 0;
-            int sum = 0;
-            int max = 0;
-            int l = 2;
-            int b[n][l];
-            while (k < n)
-            {
-                sum = 0;
-                for (int i = 0; i < n; i++)
-                {
-                    if (stoi(cafe[k][1]) == stoi(cafe[i][1]))
-                        sum += stoi(cafe[i][3]);
-                }
-                if (max < sum)
-                    max = sum;
-                b[k][0] = stoi(cafe[k][1]);
-                b[k][1] = sum;
-                k++;
-            } //нашли максимум
-            k = 0;
-            while (k < n)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    if (b[k][0] == b[i][0] && i != k)
-                    {
-                        b[i][1] = 0;
-                        b[i][0] = 0;
-                    }
-                }
-                k++;
-            }
-            for (int i = 0; i < n; i++)
-            {
-                if (b[i][1] == max)
-                    cout << "стол " << b[i][0] << " (время ожидания = " << max << ")" << endl;
-            }
+        { 
+            Max(n, m, cafe);
         } 
         if (choice == 6)
         {
