@@ -1,6 +1,21 @@
 #include <iostream>
 using namespace std;
 
+string*
+
+string* Look(int n, int m, int z, int replace, string** cafe, string** add){
+    cout << endl << "Текущая таблица заказов: " << endl;
+    cout << "№ | Номер стола |   Блюдо   | Время приготовления | Время обслуживания " << endl; 
+    for (int i = 0; i < n; i++)
+    {
+        if (replace == 0)
+            cout << cafe[i][0] << "        " << cafe[i][1] << "          " << cafe[i][2] << "             " << cafe[i][3] << "                   " << cafe[i][4] << endl;
+        else
+            cout << add[i][0] << "        " << add[i][1] << "          " << add[i][2] << "             " << add[i][3] << "                   " << add[i][4] << endl;
+    } 
+    return 0;
+}
+
 string* Max(int n, int m, string** cafe){
     cout << endl << "Столик с максимальным ожиданием: " << endl;
     int k = 0;
@@ -128,7 +143,7 @@ int main()
     cin >> n;
     int m = 5; 
     cout << endl;
-    int count;
+    //int count;
     int choice;
     int replace = 0;
     string** cafe = new string*[n];
@@ -137,7 +152,10 @@ int main()
         cafe[i] = new string[m];
     }
     int z = n + 1;
-    string add[z][m];
+    string** add = new string*[z];
+    for (int i=0; i < n; i++){
+        add[z] = new string[m];
+    }
     cin.ignore();
     for (int i = 0; i < n; i++)
     {
@@ -177,6 +195,7 @@ int main()
     {
         if (choice == 1)
         {
+            int count;
             cout << endl << "Введите новое число заказов, не превышающее " << n << ": ";
             int order;
             cin >> order;
@@ -223,15 +242,7 @@ int main()
         }
         if (choice == 2)
         {
-            cout << endl << "Текущая таблица заказов: " << endl;
-            cout << "№ | Номер стола |   Блюдо   | Время приготовления | Время обслуживания " << endl; 
-            for (int i = 0; i < n; i++)
-            {
-                if (replace == 0)
-                    cout << cafe[i][0] << "        " << cafe[i][1] << "          " << cafe[i][2] << "             " << cafe[i][3] << "                   " << cafe[i][4] << endl;
-                else
-                    cout << add[i][0] << "        " << add[i][1] << "          " << add[i][2] << "             " << add[i][3] << "                   " << add[i][4] << endl;
-            }   
+            Look(n, m, z, replace, cafe, add);
         }
         if (choice == 3)
         {
