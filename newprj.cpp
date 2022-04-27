@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-string* Sortirovka(int n, int m, string** cafe){
+string* Sortirovka1(int n, int m, string** cafe){
     cout << endl << "Таблица заказов в порядке убывания длительности приготовления блюда: " << endl << endl << "№ | Номер стола |   Блюдо   | Время приготовления " << endl;
     for (int I=0; I<n; I++){
         int Max = 0, MaxI;
@@ -27,6 +27,35 @@ string* Sortirovka(int n, int m, string** cafe){
     }
     return 0;
 }
+
+string* Sortirovka2(int n, int m, string** cafe){
+    cout << endl << "Таблица заказов в порядке возрастания длительности приготовления блюда: " << endl << endl << "№ | Номер стола |   Блюдо   | Время приготовления " << endl; 
+    int znach;
+    for (int k = 0; k < n; k++)
+    {
+        for (int i = 0; i < n - 1; i++)
+        {
+            znach = stoi(cafe[i + 1][3]);
+            if (stoi(cafe[i][3]) > znach)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    string save;
+                    save = cafe[i + 1][j];
+                    cafe[i + 1][j].clear();
+                    cafe[i + 1][j] = cafe[i][j];
+                    cafe[i][j].clear();
+                    cafe [i][j] = save;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++){
+        cout << cafe[i][0] << "        " << cafe[i][1] << "          " << cafe[i][2] << "             " << cafe[i][3] << "          " << cafe[i][4] << endl;
+    }
+    return 0;
+}           
+    
 
 int main()
 {
@@ -278,58 +307,11 @@ int main()
             cin >> choice7;
             if (choice7 == 1)
             {
-                Sortirovka(n, m, cafe);
-                // cout << endl << "Таблица заказов в порядке убывания длительности приготовления блюда: " << endl << endl << "№ | Номер стола |   Блюдо   | Время приготовления " << endl; 
-                // for (int I = 0; I < n; I++)
-                // {
-                //     int Max = 0, MaxI;
-                //     for (int i = I; i < n; i++)
-                //     {
-                //         if (stoi(cafe[i][3]) >= Max)
-                //         {
-                //             Max = stoi(cafe[i][3]);
-                //             MaxI = i;
-                //         }
-                //     }
-                //     for (int j = 0; j < m; j++)
-                //     {
-                //         string word;
-                //         word = cafe[I][j];
-                //         cafe[I][j].clear();
-                //         cafe[I][j] = cafe[MaxI][j];
-                //         cafe[MaxI][j].clear();
-                //         cafe[MaxI][j] = word;
-                //         word.clear();
-                //     }
-                //     cout << cafe[I][0] << "        " << cafe[I][1] << "          " << cafe[I][2] << "             " << cafe[I][3] << "                 " << cafe[I][4] << endl;
-                // }
+                Sortirovka1(n, m, cafe);
             }
             if (choice7 == 2)
-            {    
-                cout << endl << "Таблица заказов в порядке возрастания длительности приготовления блюда: " << endl << endl << "№ | Номер стола |   Блюдо   | Время приготовления " << endl; 
-                int k = 0;
-                int znach;
-                for (k; k < n; k++)
-                {
-                    for (int i = 0; i < n - 1; i++)
-                    {
-                        znach = stoi(cafe[i + 1][3]);
-                        if (stoi(cafe[i][3]) > znach)
-                        {
-                            for (int j = 0; j < m; j++)
-                            {
-                                string save;
-                                save = cafe[i + 1][j];
-                                cafe[i + 1][j].clear();
-                                cafe[i + 1][j] = cafe[i][j];
-                                cafe[i][j].clear();
-                                cafe [i][j] = save;
-                            }
-                        }
-                    }
-                }
-                for (int i = 0; i < n; i++)
-                    cout << cafe[i][0] << "        " << cafe[i][1] << "          " << cafe[i][2] << "             " << cafe[i][3] << "          " << cafe[i][4] << endl;
+            {
+                Sortirovka2(n, m, cafe);
             }
         }
         if (choice == 8)
