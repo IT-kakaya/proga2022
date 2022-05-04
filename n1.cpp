@@ -14,8 +14,7 @@ int main() {
     cout << "Введите делитель:" << endl;
     cin >> n2;
     try{
-        float n3 = delenie(n1, n2);
-        cout << "Результат деления:" << endl << n3 << endl;
+        cout << "Результат деления:" << endl << delenie(n1, n2) << endl;
     }
     catch(...){
         cout << "Вообще-то на ноль делить нельзя";
