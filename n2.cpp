@@ -6,16 +6,17 @@ string parol(string login1, string login, string password1){
     for(int i = 0; i<3; i++){
         cout << "Введите пароль" << endl;
         cin >> password;
-        if(password1 == password)
+        if(password1 == password){
             i = 3;
+        }
     }
     if (password != password1 || login != login1)
-        cout << "Неверный пароль или логин";
+        throw "Неверный пароль или логин";
     return "Пароль подошел";
 }
 
 int main() {
-    string login1 = "mariach";
+    string login1 = "logg";
     string password1 = "jsm";
     string login;
     cout << "Введите логин" << endl;
