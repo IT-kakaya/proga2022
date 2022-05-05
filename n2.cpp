@@ -1,12 +1,10 @@
 #include <iostream>
 using namespace std;
 
-bool parol(){
+bool parol(string login){
     string login1 = "logg";
     string password1 = "jsm";
-    string password, login;
-    cout << "Введите логин" << endl;
-    cin >> login;
+    string password;
     for(int i = 0; i<3; i++){
         cout << "Введите пароль" << endl;
         cin >> password;
@@ -20,6 +18,8 @@ bool parol(){
 }
 
 int main() {
+    cout << "Введите логин" << endl;
+    cin >> login;
     try{
         parol();
         cout << "Пароль подошел";
