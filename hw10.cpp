@@ -51,24 +51,24 @@ void print(node* curB){
 
 void printReturn(node* curB){
   if(curB->right != nullptr){
-    print(curB->right);
+    printReturn(curB->right);
   }
   cout << curB->value << endl;
   if(curB->left != nullptr){
-    print(curB->left);
+    printReturn(curB->left);
   }
-  //cout << curB->value << endl;
 }
 
 int main(){
-  int a[4] = {1, 5, 4, 3};
-  node* rot = create(2);
-  for(int i = 0; i < 4; i++){
+  int a[7] = {9, 4, 7, 11, 5, 10, 6};
+  node* rot = create(8);
+  for(int i = 0; i < 7; i++){
     node* el = create(a[i]);
     add(rot, el);
   }
-  cout << "Tree:" << endl;
-  //print(rot);
+  cout << "В порядке возрастания:" << endl;
+  print(rot);
+  cout << "В порядке убывания:" << endl;
   printReturn(rot);
   return 0;
 }
