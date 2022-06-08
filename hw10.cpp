@@ -3,13 +3,13 @@ using namespace std;
 
 typedef struct node{
   int value;
-  struct node* right;
-  struct node* left;
+  node* right;
+  node* left;
 }node;
 
 node* create(int i);
 
-void add(node* root, node* b);
+void add(node* rot, node* b);
 
 void print(node* curB);
 
@@ -18,55 +18,57 @@ void printReturn(node* curB);
 node* create(int i){
   node* b = new node();
   b->value = i;
-  b->left = NULL;
-  b->right = NULL;
+  b->left = nullptr;
+  b->right = nullptr;
   return b;
 }
 
-void add(node* root, node* b){
-  if(b->value < root->value){
-    if(root->left == NULL){ 
-      root->left = b;
+void add(node* rot, node* b){
+  if(b->value > rot->value){
+    if(rot->right == nullptr){ 
+      rot->right = b;
     }else{ 
-      add(root->left, b);
+      add(rot->right, b);
     }
   }else{
-    if(root->right == NULL){
-      root->right = b;
+    if(rot->left == nullptr){
+      rot->left = b;
     }else{
-      add(root->right, b);
+      add(rot->left, b);
     }
   }
 }
 
 void print(node* curB){
-  if(curB->left != NULL){
-    print(curB);
+  if(curB->left != nullptr){
+    print(curB->left);
   }
   cout << curB->value << endl;
-  if(curB->right != NULL){
-    print(curB);
+  if(curB->right != nullptr){
+    print(curB->right);
   }
 }
 
 void printReturn(node* curB){
-  if(curB->right != NULL){
-    print(curB);
+  if(curB->right != nullptr){
+    print(curB->right);
   }
   cout << curB->value << endl;
-  if(curB->left != NULL){
-    print(curB);
+  if(curB->left != nullptr){
+    print(curB->left);
   }
+  //cout << curB->value << endl;
 }
 
 int main(){
-  int a[7] = {-3, 1, -5, 42, 2, -6, 8};
-  node* root = create(0);
-  for(int i = 0; i < 7; i++){
+  int a[4] = {1, 5, 4, 3};
+  node* rot = create(2);
+  for(int i = 0; i < 4; i++){
     node* el = create(a[i]);
-    add(root, el);
+    add(rot, el);
   }
   cout << "Tree:" << endl;
-  print(root);
+  //print(rot);
+  printReturn(rot);
   return 0;
 }
